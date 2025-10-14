@@ -1,6 +1,6 @@
 {
   "name": "karma-less-preprocessor",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "A Karma plugin. Compile LESS on the fly.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nirth/karma-less-preprocessor.git"
+    "url": "git://github.com/WarriorVortex/karma-less-preprocessor.git"
   },
   "keywords": [
     "karma-plugin",
@@ -19,17 +19,15 @@
   ],
   "author": "David Sergey <nirth.furzahad@gmail.com>, Cloud Chen <cloudcmh@gmail.com>",
   "peerDependencies": {
-    "karma": ">=0.10",
-    "less": ">=2.5"
   },
   "license": "MIT",
   "devDependencies": {
-    "grunt": "~1.1.0",
-    "grunt-auto-release": "~0.0.2",
+    "grunt": "1.5.3",
+    "grunt-auto-release": "~0.0.7",
     "grunt-bump": "^0.8.0",
     "grunt-npm": "~0.0.2",
-    "less": ">=2.5",
-    "karma": ">=0.10"
+    "less": "^4.4",
+    "karma": "^6.4.0"
   },
   "contributors": [
     "nirth <nirth.furzahad@gmail.com>",
@@ -41,6 +39,7 @@
     "Cloud Chen <cloudcmh@gmail.com>",
     "marcbaechinger <marc.baechinger@gmail.com>",
     "Tarun Kothuri <tkothuri@appnexus.com>",
-    "Harry Schmidt <me@goldibex.com>"
+    "Harry Schmidt <me@goldibex.com>",
+    "Vladimir Erokhin warrior.vortex41@gmail.com"
   ]
 }
