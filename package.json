@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "git://github.com/WarriorVortex/karma-less-preprocessor.git"
@@ -20,7 +21,7 @@
   "author": "David Sergey <nirth.furzahad@gmail.com>, Cloud Chen <cloudcmh@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "1.5.3",
+    "grunt": ">=1.0.1",
     "grunt-auto-release": "~0.0.7",
     "grunt-bump": "^0.8.0",
     "grunt-npm": "~0.0.2",

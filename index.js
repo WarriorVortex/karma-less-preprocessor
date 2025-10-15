@@ -1,63 +1,66 @@
-var less = require('less'),
-    path = require('path'),
-    fs = require('fs'),
-    util = require('util');
+const less = require('less');
+const path = require('path');
+const fs = require('fs');
 
-var createLessPreprocessor = function (args, configuration, basePath, logger, helper) {
-  var config = configuration || {},
-      options = util._extend({compress: false, save: false, paths: Array()}, config.options),
-      additionalData = config.additionalData || {},
-      translatedPaths = Array(),
-      log = logger.create('preprocessor:less');
-
-  var transformPath = args.transformPath || config.transformPath || function (filePath) {
-    return filePath.replace(/\.less$/, '.css');
+const createLessPreprocessor = (args, configuration, basePath, logger, helper) => {
+  const config = configuration ?? {};
+  const options = {
+    compress: false,
+    save: false,
+    paths: [],
+    ...config.options,
   };
+  const additionalData = config.additionalData ?? {};
+  const log = logger.create('preprocessor:less');
 
-  var rendered = function (done, filePath, error, content) {
-    var content;
-    if (error !== null && error !== undefined) {
-      log.error('Error parsing file:', error);
-    } else {
-      content = content.css;
-      if (options.save) {
-        var p = path.resolve(filePath.replace(/\/([\.a-zA-Z0-9\-\_]+).css$/, '/'));
-        helper.mkdirIfNotExists(p, function () {
-          var n = filePath.match(/[a-zA-Z\-\.\_]+.css$/).reverse()[0];
-          fs.writeFile(path.join(p, n), content, 'utf-8', function (error) {
-            if (error) {
-              log.error('Error writing file:', error);
-            }
-            done(content);
-          });
-        });
-      } else {
-        done(content);
-      }
-    }
-  };
+  const transformPath = args.transformPath
+      ?? config.transformPath
+      ?? (filePath => filePath.replace(/\.less$/, '.css'));
 
-  return function (content, file, done) {
-    file.path = transformPath(file.originalPath);
+  const transformRendered = (filePath, content, done) => {
+    const { css } = content;
 
-    options.paths.forEach(function(element, index, array) {
-      translatedPaths[index] = basePath + '/' + element;
-    });
-
-    var fullOptions = util._extend({}, options, additionalData, {
-      paths: translatedPaths,
-    });
-
-    try {
-      less.render(content, fullOptions, rendered.bind(null, done, file.path));
-    } catch (error) {
-      log.error('%s\n  at %s', error.message, file.originalPath);
+    if (!options.save) {
+      done(css);
       return;
     }
-  };
+
+    const resolvedPath = path.resolve(filePath.replace(/\/([.a-zA-Z0-9\-_]+).css$/, '/'));
+
+    helper.mkdirIfNotExists(resolvedPath, () => {
+      const matches = filePath.match(/[a-zA-Z\-._]+.css$/);
+      const paths = path.join(resolvedPath, ...matches);
+      fs.promises.writeFile(paths, css, 'utf-8')
+        .then(() => done(css))
+        .catch(err => log.error('Error writing file:', err));
+    });
+  }
+
+  return (content, file, done) => {
+    file.path = transformPath(file.originalPath);
+
+    const translatedPaths = options.paths
+      .map(elem => `${basePath}/${elem}`);
+
+    const fullOptions = {
+      paths: translatedPaths,
+      ...options,
+      ...additionalData,
+    }
+
+    less.render(content, fullOptions)
+      .then(content => transformRendered(file.path, content, done))
+      .catch(err => log.error(`Error parsing file: \"${err.message}\"\n  at ${file.originalPath}`));
+  }
 };
 
-createLessPreprocessor.$inject = ['args', 'config.lessPreprocessor', 'config.basePath', 'logger', 'helper'];
+createLessPreprocessor.$inject = [
+  'args',
+  'config.lessPreprocessor',
+  'config.basePath',
+  'logger',
+  'helper'
+];
 
 // PUBLISH DI MODULE
 module.exports = {
