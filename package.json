@@ -1,11 +1,12 @@
 {
   "name": "karma-less-preprocessor",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A Karma plugin. Compile LESS on the fly.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "commonjs",
   "repository": {
     "type": "git",
     "url": "git://github.com/WarriorVortex/karma-less-preprocessor.git"
@@ -18,28 +19,36 @@
     "less-css"
   ],
   "author": "David Sergey <nirth.furzahad@gmail.com>, Cloud Chen <cloudcmh@gmail.com>",
-  "peerDependencies": {
-  },
   "license": "MIT",
+  "peerDependencies": {
+    "karma": ">=6.0.0",
+    "less": ">=4.0.0"
+  },
   "devDependencies": {
-    "grunt": "1.5.3",
+    "grunt": ">=1.0.1",
     "grunt-auto-release": "~0.0.7",
     "grunt-bump": "^0.8.0",
     "grunt-npm": "~0.0.2",
+    "karma": "^6.4.0",
     "less": "^4.4",
-    "karma": "^6.4.0"
+    "coffeescript": "^2.7.0"
   },
   "contributors": [
     "nirth <nirth.furzahad@gmail.com>",
     "r3dDoX <Patrick@Elfriede-Pro.local>",
     "David <nirth.furzahad@example.com>",
     "r3dDoX <patrick@walther-online.ch>",
-    "Patrick <Patrick@Elfriede-Pro.local>",
-    "Jason Bedard <jason+github@jbedard.ca>",
     "Cloud Chen <cloudcmh@gmail.com>",
-    "marcbaechinger <marc.baechinger@gmail.com>",
-    "Tarun Kothuri <tkothuri@appnexus.com>",
+    "Jason Bedard <jason+github@jbedard.ca>",
+    "Patrick <Patrick@Elfriede-Pro.local>",
+    "David Sergey Grigoryan <me@davidsergey.com>",
     "Harry Schmidt <me@goldibex.com>",
-    "Vladimir Erokhin warrior.vortex41@gmail.com"
-  ]
+    "Tarun Kothuri <tkothuri@appnexus.com>",
+    "marcbaechinger <marc.baechinger@gmail.com>",
+    "rkesters <robert.d.kesterson@leidos.com>",
+    "Vladimir Erokhin <warrior.vortex41@gmail.com>"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
