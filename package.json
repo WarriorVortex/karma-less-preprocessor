@@ -20,13 +20,18 @@
   ],
   "author": "David Sergey <nirth.furzahad@gmail.com>, Cloud Chen <cloudcmh@gmail.com>",
   "license": "MIT",
+  "peerDependencies": {
+    "karma": ">=6.0.0",
+    "less": ">=4.0.0"
+  },
   "devDependencies": {
     "grunt": ">=1.0.1",
     "grunt-auto-release": "~0.0.7",
     "grunt-bump": "^0.8.0",
     "grunt-npm": "~0.0.2",
     "karma": "^6.4.0",
-    "less": "^4.4"
+    "less": "^4.4",
+    "coffeescript": "^2.7.0"
   },
   "contributors": [
     "nirth <nirth.furzahad@gmail.com>",
@@ -45,8 +50,5 @@
   ],
   "engines": {
     "node": ">=14.0.0"
-  },
-  "optionalDependencies": {
-    "coffeescript": "^2.7.0"
   }
 }
