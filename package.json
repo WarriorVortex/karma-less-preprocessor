@@ -39,14 +39,14 @@
     "David Sergey Grigoryan <me@davidsergey.com>",
     "Harry Schmidt <me@goldibex.com>",
     "Tarun Kothuri <tkothuri@appnexus.com>",
-    "Vladimir Erokhin <erohinvova01010111@gmail.com>",
     "marcbaechinger <marc.baechinger@gmail.com>",
-    "rkesters <robert.d.kesterson@leidos.com>"
+    "rkesters <robert.d.kesterson@leidos.com>",
+    "Vladimir Erokhin <warrior.vortex41@gmail.com>"
   ],
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {
+  "optionalDependencies": {
     "coffeescript": "^2.7.0"
   }
 }
